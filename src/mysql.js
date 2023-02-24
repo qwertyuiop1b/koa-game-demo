@@ -1,8 +1,12 @@
-const mysql = require("mysql");
+const { Sequelize } = require("sequelize");
 
-module.exports = function createConnect(config) {
+module.exports = function mysql(config) {
   return new Promise((resolve, reject) => {
-    const connection = mysql.createConnection(config);
-    connection.connect((err) => (err ? reject(err) : resolve(connection)));
-  });
-};
+    const sequelize = new Sequelize(config.database, config.user, config.password, {
+      host: config.host,
+      dialect: "mysql"
+    });
+    sequelize.authenticate().then(() => resolve(sequelize)).catch(reject)
+  })
+}
+

@@ -3,7 +3,8 @@
     "koa": "^2.14.1",
     "koa-body": "^6.0.1",
     "koa-router": "^12.0.0",
-    "mysql": "^2.18.1"
+    "mysql2": "^3.1.2",
+    "sequelize": "^6.29.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

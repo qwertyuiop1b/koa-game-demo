@@ -3,14 +3,20 @@ const Router = require("koa-router");
 const { koaBody } = require("koa-body");
 const config = require("./config");
 const mysql = require("./mysql");
+const { createUserModel } = require("./model")
 
 async function main() {
-  const db = await mysql({
+  const sequelize = await mysql({
     host: config.database.host,
     user: config.database.username,
     password: config.database.password,
     database: config.database.dbName,
   });
+
+  await createUserModel(sequelize);
+
+  
+
 
   const app = new Koa();
   const router = new Router();
